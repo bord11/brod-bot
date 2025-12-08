@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html dir="rtl" lang="ar">
 <head>
-    <title>بوت إرسال الرسائل - Brod</title>
+    <title>cbrbrod - بوت إرسال الرسائل</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
@@ -13,7 +13,7 @@
         }
         
         body {
-            background: linear-gradient(135deg, #8A2BE2 0%, #4B0082 100%);
+            background: linear-gradient(135deg, #2d1b3d 0%, #1a0f2e 50%, #0d0520 100%);
             min-height: 100vh;
             padding: 20px;
             display: flex;
@@ -22,94 +22,132 @@
         }
         
         .container {
-            background: rgba(255, 255, 255, 0.95);
-            border-radius: 20px;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
-            padding: 30px;
+            background: linear-gradient(135deg, #3d2557 0%, #2a1b3d 100%);
+            border-radius: 25px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+            padding: 40px;
             width: 100%;
-            max-width: 600px;
+            max-width: 700px;
             backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.3);
+            border: 2px solid rgba(138, 92, 192, 0.4);
         }
         
         .header {
             text-align: center;
-            margin-bottom: 25px;
+            margin-bottom: 35px;
+            position: relative;
+        }
+
+        .logo {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 20px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 4px solid #9b59b6;
+            box-shadow: 0 8px 25px rgba(155, 89, 182, 0.4);
+        }
+
+        .logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
         
         .header h1 {
-            color: #8A2BE2;
-            font-size: 1.8rem;
-            margin-bottom: 8px;
+            color: #b794f6;
+            font-size: 2rem;
+            margin-bottom: 12px;
+            font-weight: 700;
         }
         
         .header p {
-            color: #666;
-            font-size: 1rem;
+            color: #9575cd;
+            font-size: 1.1rem;
+        }
+
+        .discord-btn {
+            display: inline-block;
+            background: linear-gradient(135deg, #7289da 0%, #5b6eae 100%);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            margin: 15px 0;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(114, 137, 218, 0.3);
+        }
+
+        .discord-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 25px rgba(114, 137, 218, 0.5);
         }
         
         .form-group {
-            margin-bottom: 20px;
+            margin-bottom: 25px;
         }
         
         label {
             display: block;
-            margin-bottom: 8px;
-            color: #333;
+            margin-bottom: 10px;
+            color: #b794f6;
             font-weight: 600;
-            font-size: 0.95rem;
+            font-size: 1rem;
         }
         
         input, textarea, select, button {
             width: 100%;
-            padding: 14px;
-            border: 2px solid #e1e5e9;
-            border-radius: 12px;
+            padding: 16px;
+            border: 2px solid #5a3d7a;
+            border-radius: 15px;
             font-size: 1rem;
             transition: all 0.3s ease;
-            background: #fff;
+            background: #2a1b3d;
+            color: #d4c5f9;
         }
         
         input:focus, textarea:focus, select:focus {
             outline: none;
-            border-color: #8A2BE2;
-            box-shadow: 0 0 0 3px rgba(138, 43, 226, 0.1);
+            border-color: #9b59b6;
+            box-shadow: 0 0 0 4px rgba(155, 89, 182, 0.3);
         }
         
         textarea {
-            height: 120px;
+            height: 140px;
             resize: vertical;
             font-family: inherit;
         }
         
         .btn {
-            background: linear-gradient(135deg, #8A2BE2 0%, #4B0082 100%);
+            background: linear-gradient(135deg, #9b59b6 0%, #6c3483 100%);
             color: white;
             border: none;
             cursor: pointer;
             font-weight: 600;
             margin-top: 10px;
+            box-shadow: 0 6px 20px rgba(155, 89, 182, 0.3);
         }
         
         .btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(138, 43, 226, 0.3);
+            box-shadow: 0 8px 30px rgba(155, 89, 182, 0.4);
         }
         
         .btn:disabled {
-            background: #ccc;
+            background: #bdc3c7;
             cursor: not-allowed;
             transform: none;
             box-shadow: none;
         }
         
         .btn.secondary {
-            background: linear-gradient(135deg, #9370DB 0%, #8A2BE2 100%);
+            background: linear-gradient(135deg, #af7ac5 0%, #9b59b6 100%);
         }
         
         .btn-group {
             display: flex;
-            gap: 10px;
+            gap: 12px;
             margin-top: 10px;
         }
         
@@ -119,11 +157,18 @@
         }
         
         .filters-section {
-            background: #f8f9fa;
-            padding: 20px;
-            border-radius: 12px;
-            margin-bottom: 20px;
+            background: #2a1b3d;
+            padding: 25px;
+            border-radius: 15px;
+            margin-bottom: 25px;
             display: none;
+            border: 2px solid #5a3d7a;
+        }
+
+        .filters-section h3 {
+            color: #b794f6;
+            margin-bottom: 20px;
+            font-size: 1.2rem;
         }
         
         .filter-row {
@@ -137,46 +182,54 @@
         }
         
         .guild-selector {
-            background: #f8f9fa;
-            padding: 20px;
-            border-radius: 12px;
-            margin-bottom: 20px;
+            background: #2a1b3d;
+            padding: 25px;
+            border-radius: 15px;
+            margin-bottom: 25px;
             display: none;
+            border: 2px solid #5a3d7a;
+        }
+
+        .guild-selector h3 {
+            color: #b794f6;
+            margin-bottom: 20px;
+            font-size: 1.2rem;
         }
         
         .guild-item {
             display: flex;
             align-items: center;
-            padding: 15px;
-            margin: 10px 0;
-            background: white;
-            border-radius: 10px;
+            padding: 18px;
+            margin: 12px 0;
+            background: #3d2557;
+            border-radius: 12px;
             cursor: pointer;
             transition: all 0.3s ease;
             border: 2px solid transparent;
         }
         
         .guild-item:hover {
-            border-color: #8A2BE2;
+            border-color: #9b59b6;
+            box-shadow: 0 4px 15px rgba(155, 89, 182, 0.4);
         }
         
         .guild-item.selected {
-            border-color: #9C27B0;
-            background: #f3e5f5;
+            border-color: #b794f6;
+            background: #5a3d7a;
         }
         
         .guild-icon {
-            width: 45px;
-            height: 45px;
+            width: 50px;
+            height: 50px;
             border-radius: 50%;
             margin-left: 15px;
-            background: linear-gradient(135deg, #8A2BE2 0%, #4B0082 100%);
+            background: linear-gradient(135deg, #9b59b6 0%, #6c3483 100%);
             display: flex;
             align-items: center;
             justify-content: center;
             color: white;
             font-weight: bold;
-            font-size: 1.2rem;
+            font-size: 1.3rem;
         }
         
         .guild-info {
@@ -185,54 +238,58 @@
         
         .guild-name {
             font-weight: 600;
-            color: #333;
+            color: #d4c5f9;
             font-size: 1.1rem;
         }
         
         .stats {
-            background: #f8f9fa;
-            padding: 20px;
-            border-radius: 12px;
-            margin-top: 20px;
+            background: #2a1b3d;
+            padding: 25px;
+            border-radius: 15px;
+            margin-top: 25px;
             display: none;
+            border: 2px solid #5a3d7a;
         }
         
         .stats h3 {
-            color: #8A2BE2;
-            margin-bottom: 15px;
+            color: #b794f6;
+            margin-bottom: 20px;
             text-align: center;
+            font-size: 1.3rem;
         }
         
         .stat-item {
             display: flex;
             justify-content: space-between;
-            margin-bottom: 10px;
-            padding: 10px 0;
-            border-bottom: 1px solid #e1e5e9;
+            margin-bottom: 12px;
+            padding: 12px 0;
+            border-bottom: 2px solid #5a3d7a;
         }
         
         .stat-label {
             font-weight: 600;
-            color: #555;
+            color: #9575cd;
         }
         
         .stat-value {
             font-weight: bold;
-            color: #8A2BE2;
+            color: #b794f6;
+            font-size: 1.1rem;
         }
         
         .loading {
             display: none;
             text-align: center;
-            margin: 20px 0;
+            margin: 25px 0;
+            color: #b794f6;
         }
         
         .spinner {
             border: 4px solid #f3f3f3;
-            border-top: 4px solid #8A2BE2;
+            border-top: 4px solid #9b59b6;
             border-radius: 50%;
-            width: 40px;
-            height: 40px;
+            width: 50px;
+            height: 50px;
             animation: spin 1s linear infinite;
             margin: 0 auto 15px;
         }
@@ -243,16 +300,16 @@
         }
         
         .alert {
-            padding: 15px;
-            border-radius: 12px;
-            margin-bottom: 20px;
+            padding: 18px;
+            border-radius: 15px;
+            margin-bottom: 25px;
             text-align: center;
             font-weight: 600;
         }
         
-        .success { background: #e8f5e8; color: #2e7d32; border: 1px solid #c8e6c9; }
-        .error { background: #ffebee; color: #c62828; border: 1px solid #ffcdd2; }
-        .info { background: #e3f2fd; color: #1565c0; border: 1px solid #bbdefb; }
+        .success { background: #2d5016; color: #a5d6a7; border: 2px solid #4caf50; }
+        .error { background: #5c1a1a; color: #ef9a9a; border: 2px solid #f44336; }
+        .info { background: #1a3a5c; color: #90caf9; border: 2px solid #2196f3; }
         
         .hidden {
             display: none;
@@ -264,12 +321,17 @@
             }
             
             .container {
-                padding: 20px;
-                border-radius: 15px;
+                padding: 25px;
+                border-radius: 20px;
             }
             
             .header h1 {
-                font-size: 1.5rem;
+                font-size: 1.6rem;
+            }
+
+            .logo {
+                width: 100px;
+                height: 100px;
             }
             
             .filter-row {
@@ -286,80 +348,84 @@
 <body>
     <div class="container">
         <div class="header">
-            <h1>🤖 بوت إرسال الرسائل - Brod</h1>
-            <p>أرسل رسائل تلقائية مع فلاتر متقدمة</p>
+            <div class="logo">
+                <img src="https://cdn.discordapp.com/attachments/1445129696575754422/1447645230533710037/e9ff5a74703efd10.png?ex=6938602e&is=69370eae&hm=91e7f7581d646922b143d5ea611f1b26e810bed8e307fbb3dc575910e2a726f6&" alt="cbrbrod">
+            </div>
+            <h1>cbrbrod</h1>
+            <p>بوت إرسال الرسائل الأوتوماتيكي</p>
+            <a href="https://discord.gg/mjf4J8ux45" target="_blank" class="discord-btn">سيرفرنا بالديسكورد</a>
         </div>
 
         <div id="alert" class="alert hidden"></div>
 
         <div class="form-group">
-            <label for="botToken">🔑 توكن البوت:</label>
-            <input type="password" id="botToken" placeholder="أدخل توكن البوت هنا..." required>
+            <label for="botToken">توكن البوت:</label>
+            <input type="password" id="botToken" placeholder="حط توكن البوت هنا..." required>
             <div class="btn-group">
                 <button class="btn secondary" onclick="testConnection()">
-                    🔧 اختبار الاتصال
+                    اختبار الاتصال
                 </button>
                 <button class="btn" onclick="getGuilds()">
-                    🔍 عرض السيرفرات
+                    عرض السيرفرات
                 </button>
             </div>
         </div>
 
         <div id="guildSelector" class="guild-selector">
-            <h3>🏠 اختر السيرفر:</h3>
+            <h3>اختر السيرفر:</h3>
             <div id="guildsList"></div>
         </div>
 
         <div id="filtersSection" class="filters-section">
-            <h3>🎛️ الفلاتر المتقدمة:</h3>
+            <h3>الفلاتر:</h3>
             <div class="filter-row">
                 <div class="filter-group">
-                    <label for="roleFilter">👑 الرتبة:</label>
+                    <label for="roleFilter">الرتبة:</label>
                     <select id="roleFilter" onchange="updateSendButton()">
-                        <option value="all">جميع الرتب</option>
+                        <option value="all">كل الرتب</option>
                     </select>
                 </div>
             </div>
             <button class="btn secondary" onclick="getRoles()">
-                🔄 تحديث الرتب
+                تحديث الرتب
             </button>
         </div>
 
         <div class="form-group">
-            <label for="message">💬 الرسالة:</label>
-            <textarea id="message" placeholder="اكتب الرسالة التي تريد إرسالها..." required></textarea>
+            <label for="message">الرسالة:</label>
+            <textarea id="message" placeholder="اكتب الرسالة اللي تبي ترسلها..." required></textarea>
         </div>
 
         <div class="form-group">
-            <label for="delay">⏰ الوقت بين كل رسالة (ثانية):</label>
+            <label for="delay">الوقت بين كل رسالة (ثانية):</label>
             <input type="number" id="delay" value="2" min="0.25" max="15" step="0.25" required>
         </div>
 
         <button class="btn" id="sendBtn" onclick="sendMessages()" disabled>
-            🚀 إرسال الرسائل (اختر سيرفر أولاً)
+            إرسال الرسائل (اختر سيرفر أول)
         </button>
 
         <div class="loading" id="loading">
             <div class="spinner"></div>
-            <p id="loadingText">جاري الإرسال... لا تغلق الصفحة</p>
+            <p id="loadingText">قاعد يرسل... لا تسكر الصفحة</p>
         </div>
 
         <div class="stats" id="stats">
-            <h3>📊 إحصائيات الإرسال</h3>
+            <h3>إحصائيات الإرسال</h3>
             <div class="stat-item">
-                <span class="stat-label">🏠 السيرفر:</span>
+                <span class="stat-label">السيرفر:</span>
                 <span class="stat-value" id="currentGuild">-</span>
             </div>
             <div class="stat-item">
-                <span class="stat-label">✅ تم الإرسال:</span>
+                <span class="stat-label">انرسل:</span>
                 <span class="stat-value" id="sentCount">0</span>
             </div>
             <div class="stat-item">
-                <span class="stat-label">❌ فشل الإرسال:</span>
+                <span class="stat-label">ما انرسل:</span>
                 <span class="stat-value" id="failedCount">0</span>
             </div>
             <div class="stat-item">
-                <span class="stat-label">👥 الإجمالي:</span>
+                <span class="stat-label">المجموع:</span>
                 <span class="stat-value" id="totalCount">0</span>
             </div>
         </div>
@@ -372,14 +438,14 @@
         let currentRoles = [];
 
         async function testConnection() {
-            showAlert('🔧 جاري اختبار الاتصال...', 'info');
+            showAlert('قاعد يختبر الاتصال...', 'info');
             try {
                 const baseUrl = API_BASE || window.location.origin;
                 const response = await fetch(baseUrl + '/api/test');
                 const data = await response.json();
-                showAlert('✅ ' + data.message, 'success');
+                showAlert('تمام، الاتصال شغال: ' + data.message, 'success');
             } catch (error) {
-                showAlert('❌ خطأ في الاتصال: ' + error.message, 'error');
+                showAlert('في مشكلة بالاتصال: ' + error.message, 'error');
             }
         }
 
@@ -387,11 +453,11 @@
             const token = document.getElementById('botToken').value.trim();
             
             if (!token) {
-                showAlert('❌ أدخل توكن البوت أولاً', 'error');
+                showAlert('حط التوكن أول', 'error');
                 return;
             }
 
-            showAlert('🔍 جاري جلب السيرفرات...', 'info');
+            showAlert('قاعد يجيب السيرفرات...', 'info');
 
             try {
                 const baseUrl = API_BASE || window.location.origin;
@@ -405,24 +471,24 @@
 
                 if (data.success) {
                     displayGuilds(data.guilds);
-                    showAlert('✅ ' + data.message, 'success');
+                    showAlert('تمام، جبنا السيرفرات: ' + data.message, 'success');
                 } else {
-                    showAlert('❌ ' + data.error, 'error');
+                    showAlert('في مشكلة: ' + data.error, 'error');
                 }
             } catch (error) {
-                showAlert('❌ خطأ في الاتصال: ' + error.message, 'error');
+                showAlert('في مشكلة بالاتصال: ' + error.message, 'error');
             }
         }
 
         async function getRoles() {
             if (!selectedGuild) {
-                showAlert('❌ اختر سيرفر أولاً', 'error');
+                showAlert('اختر سيرفر أول', 'error');
                 return;
             }
 
             const token = document.getElementById('botToken').value.trim();
             
-            showAlert('👑 جاري جلب الرتب...', 'info');
+            showAlert('قاعد يجيب الرتب...', 'info');
 
             try {
                 const baseUrl = API_BASE || window.location.origin;
@@ -439,12 +505,12 @@
 
                 if (data.success) {
                     displayRoles(data.roles);
-                    showAlert('✅ ' + data.message, 'success');
+                    showAlert('تمام، جبنا الرتب: ' + data.message, 'success');
                 } else {
-                    showAlert('❌ ' + data.error, 'error');
+                    showAlert('في مشكلة: ' + data.error, 'error');
                 }
             } catch (error) {
-                showAlert('❌ خطأ في جلب الرتب: ' + error.message, 'error');
+                showAlert('في مشكلة بجلب الرتب: ' + error.message, 'error');
             }
         }
 
@@ -456,7 +522,7 @@
             section.style.display = 'block';
 
             if (!guilds || guilds.length === 0) {
-                list.innerHTML = '<div class="alert info">لا توجد سيرفرات</div>';
+                list.innerHTML = '<div class="alert info">ما في سيرفرات</div>';
                 return;
             }
 
@@ -476,7 +542,7 @@
 
         function displayRoles(roles) {
             const roleSelect = document.getElementById('roleFilter');
-            roleSelect.innerHTML = '<option value="all">جميع الرتب</option>';
+            roleSelect.innerHTML = '<option value="all">كل الرتب</option>';
             
             currentRoles = roles || [];
             
@@ -501,7 +567,7 @@
             document.getElementById('filtersSection').style.display = 'block';
             updateSendButton();
             document.getElementById('currentGuild').textContent = guild.name;
-            showAlert('✅ تم اختيار سيرفر: ' + guild.name, 'success');
+            showAlert('تمام، اخترت السيرفر: ' + guild.name, 'success');
             
             getRoles();
         }
@@ -510,13 +576,13 @@
             const sendBtn = document.getElementById('sendBtn');
             if (selectedGuild) {
                 sendBtn.disabled = false;
-                sendBtn.textContent = '🚀 إرسال إلى ' + selectedGuild.name;
+                sendBtn.textContent = 'إرسال لـ ' + selectedGuild.name;
             }
         }
 
         async function sendMessages() {
             if (!selectedGuild) {
-                showAlert('❌ اختر سيرفر أولاً', 'error');
+                showAlert('اختر سيرفر أول', 'error');
                 return;
             }
 
@@ -526,7 +592,7 @@
             const roleFilter = document.getElementById('roleFilter').value;
 
             if (!message) {
-                showAlert('❌ اكتب الرسالة', 'error');
+                showAlert('اكتب الرسالة', 'error');
                 return;
             }
 
@@ -538,8 +604,8 @@
             loading.style.display = 'block';
             stats.style.display = 'block';
 
-            document.getElementById('loadingText').textContent = 'جاري الإرسال إلى أعضاء سيرفر: ' + selectedGuild.name;
-            showAlert('🚀 بدء الإرسال إلى أعضاء سيرفر: ' + selectedGuild.name, 'info');
+            document.getElementById('loadingText').textContent = 'قاعد يرسل لأعضاء: ' + selectedGuild.name;
+            showAlert('بدينا نرسل لأعضاء: ' + selectedGuild.name, 'info');
 
             try {
                 const baseUrl = API_BASE || window.location.origin;
@@ -559,12 +625,12 @@
 
                 if (data.success) {
                     updateStats(data.results.sent, data.results.failed, data.results.total);
-                    showAlert('✅ تم الإرسال إلى ' + data.results.sent + ' عضو | فشل: ' + data.results.failed, 'success');
+                    showAlert('تمام، انرسل لـ ' + data.results.sent + ' عضو | ما انرسل لـ: ' + data.results.failed, 'success');
                 } else {
-                    showAlert('❌ ' + data.error, 'error');
+                    showAlert('في مشكلة: ' + data.error, 'error');
                 }
             } catch (error) {
-                showAlert('❌ خطأ في الإرسال: ' + error.message, 'error');
+                showAlert('في مشكلة بالإرسال: ' + error.message, 'error');
             } finally {
                 sendBtn.disabled = false;
                 loading.style.display = 'none';
@@ -593,4 +659,4 @@
         });
     </script>
 </body>
-  </html>
+</html>
